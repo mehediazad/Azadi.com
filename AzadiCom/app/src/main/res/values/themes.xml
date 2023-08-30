@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Azadicom" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+    </style>
+
+    <style name="Theme.Azadicom" parent="Base.Theme.Azadicom">
+        <item name="android:statusBarColor">#3366cc</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
+
+    </style>
+
+
+</resources>

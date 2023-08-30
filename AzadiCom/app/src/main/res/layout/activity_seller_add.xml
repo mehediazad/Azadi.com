@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.SellerAddActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/AppBarLayoutToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="#3366cc"
+                app:navigationIcon="@drawable/arrow_back_24"
+                app:title="একটি এড পোস্ট করুন "
+                app:titleTextColor="@color/white"></androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/AppBarLayoutToolbar"
+            android:layout_marginBottom="65dp">
+
+            <RelativeLayout
+                android:id="@+id/mainContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutSeller"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="পোস্ট দাতার নাম ">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtSellerName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/ic_baseline_person"
+                        android:drawablePadding="13dp"
+                        android:drawableTint="#3366cc"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="15.6sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutSellerPhone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutSeller"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="পোস্ট দাতার ফোন নাম্বার ">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtSellerPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/ic_baseline_phone"
+                        android:drawablePadding="13sp"
+                        android:drawableTint="#3366cc"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:textColor="#CBC0C0"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="15.6sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutSellerAddress"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutSellerPhone"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="পোস্ট দাতার অবস্থান ">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtSellerAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/ic_baseline_location_on_24"
+                        android:drawablePadding="13dp"
+                        android:drawableTint="#3366cc"
+                        android:maxLines="1"
+                        android:textColor="#CBC0C0"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="15.6sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutDropdownCondition"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutSellerAddress"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="ফোনের কন্ডিশন">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/actSelectPhoneCondition"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:drawableStart="@drawable/baseline_smartphone_24"
+                        android:drawablePadding="13dp"
+                        android:drawableTint="#3366cc"
+                        android:focusable="false"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="10.40dp"
+                        android:textSize="15.60sp"
+                        app:boxStrokeColor="#3366cc"
+                        tools:ignore="LabelFor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutDropdownGenuine"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutDropdownCondition"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="ফোনের সত্যতা নির্বাচন করুন">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/actSelectPhoneGenuine"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:drawableStart="@drawable/baseline_smartphone_24"
+                        android:drawablePadding="13dp"
+                        android:drawableTint="#3366cc"
+                        android:focusable="false"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="10.40dp"
+                        android:textSize="15.60sp"
+                        app:boxStrokeColor="#3366cc"
+                        tools:ignore="LabelFor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutDropdownBand"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutDropdownGenuine"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="ব্র্যান্ড">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/actSelectPhoneBand"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:drawableStart="@drawable/baseline_smartphone_24"
+                        android:drawablePadding="13dp"
+                        android:drawableTint="#3366cc"
+                        android:focusable="false"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="10.40dp"
+                        android:textSize="15.60sp"
+                        app:boxStrokeColor="#3366cc"
+                        tools:ignore="LabelFor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutPhoneModel"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutDropdownBand"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="মডেল">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtPhoneModel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/baseline_smartphone_24"
+                        android:drawablePadding="13dp"
+                        android:drawableTint="#3366cc"
+                        android:maxLines="1"
+                        android:textColor="#CBC0C0"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="15.6sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutPhonePrice"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutPhoneModel"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="মূল্য (টাকা)">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtPhonePrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/money_24"
+                        android:drawablePadding="13sp"
+                        android:drawableTint="#3366cc"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textColor="#CBC0C0"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="15.6sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutPhonePrice"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="আপনার মোবাইল ফোনের ছবি আপলোড করুন (সর্বোচ্চ ৪ টি ) "
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/LinearLayoutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtImage"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/buttonMultipleImageSubmit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginHorizontal="20dp"
+                            android:backgroundTint="#3366cc"
+                            android:gravity="center"
+                            android:text="ছবি বাছাই করুন "
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:layout_marginTop="10dp" />
+
+                        <TextView
+                            android:id="@+id/totalPhotos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_Gallery_Image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="5dp"
+                        android:scrollbarStyle="outsideInset"
+                        android:scrollbars="vertical" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/materialtxtField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/LinearLayoutButton"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="10dp"
+                    android:text="বিবরণ: "
+                    android:textColor="@color/black"
+                    android:textSize="15.6sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layouttxtField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/materialtxtField"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="বেশি তথ্য = বেশি সংখ্যক আগ্রহী ক্রতা!"
+                    android:textAlignment="center">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtField"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawablePadding="13dp"
+                        android:drawableTint="#3366cc"
+                        android:lines="6"
+                        android:maxLines="12"
+                        android:textColor="#CBC0C0"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="15.6sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#3366cc"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="SUBMIT"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+</layout>
