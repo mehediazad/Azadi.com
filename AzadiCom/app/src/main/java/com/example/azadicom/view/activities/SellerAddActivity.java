@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -16,20 +17,25 @@ import android.os.Build;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.azadicom.R;
 import com.example.azadicom.databinding.ActivitySellerAddBinding;
+import com.example.azadicom.databinding.CustomDialogZoomBinding;
 import com.example.azadicom.view.adapters.MultipleImageRecyclerAdapter;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.util.ArrayList;
 
 
-public class SellerAddActivity extends AppCompatActivity {
+public class SellerAddActivity extends AppCompatActivity implements MultipleImageRecyclerAdapter.CountOfImagesWhenRemoved,
+        MultipleImageRecyclerAdapter.itemClickListener {
     private ActivitySellerAddBinding binding;
 
     //
@@ -38,6 +44,8 @@ public class SellerAddActivity extends AppCompatActivity {
     private static final int Read_Permission = 101;
     private static final int PICK_IMAGE = 1;
     //
+    String[] Phone_Condition = {"ব্যবহৃত","নতুন"};
+    ArrayAdapter<String> adapterItems;
 
 
     @Override
@@ -51,6 +59,17 @@ public class SellerAddActivity extends AppCompatActivity {
         setUpRecyclerView();
 
         binding.buttonMultipleImageSubmit.setOnClickListener(v -> startImagePicker());
+
+        adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, Phone_Condition);
+        binding.actSelectPhoneCondition.setAdapter(adapterItems);
+
+        binding.actSelectPhoneCondition.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(getApplicationContext(),"অবস্থা: "+item,Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
@@ -76,7 +95,7 @@ public class SellerAddActivity extends AppCompatActivity {
 
 
     private void setUpRecyclerView() {
-        adapter = new MultipleImageRecyclerAdapter(uri);
+        adapter = new MultipleImageRecyclerAdapter(uri, getApplicationContext(), this, this);
         binding.recyclerviewGalleryImage.setLayoutManager(new GridLayoutManager(SellerAddActivity.this, 4));
         binding.recyclerviewGalleryImage.setAdapter(adapter);
     }
@@ -91,18 +110,28 @@ public class SellerAddActivity extends AppCompatActivity {
                 // this part is for to get multiple image
                 int countOfImages = data.getClipData().getItemCount();
                 for (int i = 0; i < countOfImages; i++) {
-                    Uri imageuri = data.getClipData().getItemAt(i).getUri();
-                    uri.add(imageuri);
+                    // limited the on of image piker from the gallery
+                    if (uri.size() < 4) {
+                        Uri imageuri = data.getClipData().getItemAt(i).getUri();
+                        uri.add(imageuri);
+                    } else {
+                        Toast.makeText(SellerAddActivity.this, "Not allow to pic more than 4 images", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 // then notify the adapter
                 adapter.notifyDataSetChanged();
                 binding.totalPhotos.setText("ছবি : (" + uri.size() + ")");
 
             } else {
-                // this is for to get single image
-                Uri imageuri = data.getData();
-                // and add the code into arrayList
-                uri.add(imageuri);
+                // limited the on of image piker from the gallery
+                if (uri.size() < 4) {
+                    // this is for to get single image
+                    Uri imageuri = data.getData();
+                    // and add the code into arrayList
+                    uri.add(imageuri);
+                } else {
+                    Toast.makeText(SellerAddActivity.this, "Not allow to pic more than 4 images", Toast.LENGTH_SHORT).show();
+                }
             }
             //notify the adapter
             adapter.notifyDataSetChanged();
@@ -111,21 +140,37 @@ public class SellerAddActivity extends AppCompatActivity {
             Toast.makeText(this, "You Have Not Pick Any Image", Toast.LENGTH_SHORT).show();
         }
     }
-//    private void startImagePicker() {
-//        ImagePicker.with(SellerAddActivity.this)
-//                .crop()                    //Crop image(Optional), Check Customization for more option
-//                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-////                      .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-//                .maxResultSize(400, 400)  //Final image resolution will be less than 1080 x 1080(Optional)
-//                .start();
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        Uri uri = data.getData();
-//        binding.image1.setImageURI(uri);
-//    }
 
+    @Override
+    public void clicked(int getSize) {
+        // whenever images gets removed adapter will get update
+        //and this will print the actual count
+        binding.totalPhotos.setText("ছবি : (" + uri.size() + ")");
+        Toast.makeText(SellerAddActivity.this, "Removed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void itemClick(int position) {
+        // here we will decalre the custom dialog code
+        Dialog dialog = new Dialog(this);
+
+        dialog.setContentView(R.layout.custom_dialog_zoom);
+
+//        TextView txt_dialog = dialog.findViewById(R.id.txt_dialog);
+        ImageView imageView_dialog = dialog.findViewById(R.id.imageView_dialog);
+        Button btn_close_dialog = dialog.findViewById(R.id.btn_close_dialog);
+
+//        txt_dialog.setText("ছবি "+position);
+
+
+        imageView_dialog.setImageURI(uri.get(position));
+
+        btn_close_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 }

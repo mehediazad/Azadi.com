@@ -20,7 +20,9 @@
                 android:background="#3366cc"
                 app:navigationIcon="@drawable/arrow_back_24"
                 app:title="একটি এড পোস্ট করুন "
-                app:titleTextColor="@color/white"></androidx.appcompat.widget.Toolbar>
+                app:titleTextColor="@color/white">
+
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -78,7 +80,6 @@
                         android:inputType="number"
                         android:maxLength="11"
                         android:maxLines="1"
-                        android:textColor="#CBC0C0"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="15.6sp" />
 
@@ -102,7 +103,6 @@
                         android:drawablePadding="13dp"
                         android:drawableTint="#3366cc"
                         android:maxLines="1"
-                        android:textColor="#CBC0C0"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="15.6sp" />
 
@@ -210,7 +210,6 @@
                         android:drawablePadding="13dp"
                         android:drawableTint="#3366cc"
                         android:maxLines="1"
-                        android:textColor="#CBC0C0"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="15.6sp" />
 
@@ -235,7 +234,6 @@
                         android:drawableTint="#3366cc"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:textColor="#CBC0C0"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="15.6sp" />
 
@@ -329,7 +327,6 @@
                         android:drawableTint="#3366cc"
                         android:lines="6"
                         android:maxLines="12"
-                        android:textColor="#CBC0C0"
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="15.6sp" />
                 </com.google.android.material.textfield.TextInputLayout>
