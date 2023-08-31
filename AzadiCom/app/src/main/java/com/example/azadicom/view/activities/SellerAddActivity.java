@@ -45,6 +45,9 @@ public class SellerAddActivity extends AppCompatActivity implements MultipleImag
     private static final int PICK_IMAGE = 1;
     //
     String[] Phone_Condition = {"ব্যবহৃত","নতুন"};
+    String[] Phone_Genuine = {"আসল","রিফারবিশড"};
+    String[] Phone_Brand = {"Samsung","Apple","Huawei","Xiaomi","Vivo","Oppo","Realme","Tecno","Symphony","Nokia","Walton","itel","Oneplus",
+    "Motorola","Infinix"};
     ArrayAdapter<String> adapterItems;
 
 
@@ -55,7 +58,6 @@ public class SellerAddActivity extends AppCompatActivity implements MultipleImag
 
         binding.Toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
-//        binding.image1.setOnClickListener(v -> startImagePicker());
         setUpRecyclerView();
 
         binding.buttonMultipleImageSubmit.setOnClickListener(v -> startImagePicker());
@@ -63,11 +65,32 @@ public class SellerAddActivity extends AppCompatActivity implements MultipleImag
         adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, Phone_Condition);
         binding.actSelectPhoneCondition.setAdapter(adapterItems);
 
+        adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, Phone_Genuine);
+        binding.actSelectPhoneGenuine.setAdapter(adapterItems);
+
+        adapterItems = new ArrayAdapter<String>(this,R.layout.list_item, Phone_Brand);
+        binding.actSelectPhoneBand.setAdapter(adapterItems);
+
         binding.actSelectPhoneCondition.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(getApplicationContext(),"অবস্থা: "+item,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.actSelectPhoneGenuine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(getApplicationContext(),"প্রকৃতি: "+item,Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.actSelectPhoneBand.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(getApplicationContext(),"Band: "+item,Toast.LENGTH_SHORT).show();
             }
         });
 

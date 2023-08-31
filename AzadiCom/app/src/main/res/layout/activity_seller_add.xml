@@ -333,7 +333,6 @@
 
             </RelativeLayout>
 
-
         </ScrollView>
 
         <com.google.android.material.button.MaterialButton
@@ -351,7 +350,6 @@
             android:textColor="@color/white"
             android:textSize="12dp"
             android:textStyle="bold" />
-
 
     </RelativeLayout>
 
